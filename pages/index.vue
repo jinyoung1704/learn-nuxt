@@ -2,9 +2,15 @@
   <div class="app">
       <!-- <NuxtLogo /> -->
       <main>
-        <div>
+        <!-- <SearchInput :search-keyword="searchKeyword"
+        @input="updateSerarchKeyword" -->
+        <SearchInput 
+        v-model="searchKeyword"
+        @search="searchProducts">
+       </SearchInput>
+        <!-- <div>
           <input type="text" />
-        </div>
+        </div> -->
         <div>
             <ul>
                 <li  v-for="product in products" :key="product.id" class="item flex"
@@ -23,8 +29,12 @@
 
 <script>
   import axios from 'axios'
+  import SearchInput from '@/components/SearchInput.vue'
+  import {fetchProductsByKeyword} from '@/api/index'
 
   export default {
+    comments : {SearchInput}
+    ,
       async asyncData(){
           const response = await axios.get('http://localhost:3000/products')
           console.log(response)
@@ -37,13 +47,30 @@
           return {products}
       },
 
+      data(){
+        return{
+          searchKeyword:'',
+        }
+      },
+
       methods:{
         moveToDetailPage(id){
           console.log(id);
           this.$router.push(`detail/${id}`);
 
-        }
-      }
+        },
+        // updateSerarchKeyword(keyword){
+        //   this.searchKeyword = keyword
+        // }
+        async searchProducts(){
+          const response = await fetchProductsByKeyword(this.searchKeyword)
+          console.log(response)
+          this.products = response.data.map((item) => ({
+              ...item,
+              imageUrl:  `${item.imgUrl}?random=${Math.random()}`,
+          }))
+        },
+      },
 
       // data(){
       //     return {
@@ -87,6 +114,20 @@
   display: inline-block;
   height: 40px;
   font-size: 1rem;
+  font-weight: 500;
+}
+
+.input-wrapper {
+  height: 40px;
+  margin: 1rem 0;
+}
+.search-input {
+  width: 200px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.btn {
+  font-size: 1.2rem;
   font-weight: 500;
 }
 </style>
