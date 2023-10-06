@@ -16,7 +16,7 @@
                 <li  v-for="product in products" :key="product.id" class="item flex"
                 @click="moveToDetailPage(product.id)">
                   <img class="product-image" 
-                  :src="product.imgUrl" 
+                  :src="product.imageUrl" 
                   :alt="product.name" />
                   <p> {{ product.name }}</p>
                   <span> {{ product.price }}</span>
@@ -37,11 +37,12 @@
     ,
       async asyncData(){
           const response = await axios.get('http://localhost:3000/products')
-          console.log(response)
+          // console.log(response)
+
           const products = response.data.map((item) =>{
              return {
               ...item,
-              imageUrl:  `${item.imgUrl}?random=${Math.random()}`
+              imageUrl:  `${item.imageUrl}?random=${Math.random()}`
              }
           })
           return {products}
@@ -64,11 +65,13 @@
         // }
         async searchProducts(){
           const response = await fetchProductsByKeyword(this.searchKeyword)
-          console.log(response)
+          // console.log(response)
+          
           this.products = response.data.map((item) => ({
               ...item,
-              imageUrl:  `${item.imgUrl}?random=${Math.random()}`,
+              imageUrl:  `${item.imageUrl}?random=${Math.random()}`,
           }))
+         
         },
       },
 
