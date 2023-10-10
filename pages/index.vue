@@ -13,15 +13,20 @@
         </div> -->
         <div>
             <ul>
-                <li  v-for="product in products" :key="product.id" class="item flex"
-                @click="moveToDetailPage(product.id)">
-                  <img class="product-image" 
-                  :src="product.imageUrl" 
-                  :alt="product.name" />
-                  <p> {{ product.name }}</p>
+                <li
+                v-for="product in products"
+                :key="product.id"
+                class="item flex"
+                @click="moveToDetailPage(product.id)"
+              >
+                <img class="product-image" :src="product.imageUrl" alt="product.name" />
+                <p> {{ product.name }}</p>
                   <span> {{ product.price }}</span>
-                </li>
+              </li>
             </ul>
+            <div class="cart-wrapper">
+              <button class="btn" @click="moveToCartPage">장바구니 바로가기</button>
+            </div>
         </div>
       </main>
   </div>
@@ -56,7 +61,6 @@
 
       methods:{
         moveToDetailPage(id){
-          console.log(id);
           this.$router.push(`detail/${id}`);
 
         },
@@ -73,6 +77,10 @@
           }))
          
         },
+
+        moveToCartPage(){
+          this.$router.push('/cart')
+        }
       },
 
       // data(){
