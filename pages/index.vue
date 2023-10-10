@@ -1,3 +1,4 @@
+
 <template>
   <div class="app">
       <!-- <NuxtLogo /> -->
@@ -36,6 +37,7 @@
   import axios from 'axios'
   import SearchInput from '@/components/SearchInput.vue'
   import {fetchProductsByKeyword} from '@/api/index'
+
 
   export default {
     comments : {SearchInput}
