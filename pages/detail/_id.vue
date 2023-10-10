@@ -31,6 +31,7 @@ export default{
 
     ,methods:{
       addToCart(){
+        this.$store.commit('addCartItem', this.product);
         this.$router.push('/cart'); // pages 안에 페이지 이름을 동일하게 하여 연결만 해주면 nuxt 폴더 안에 router.json에서 라우터 자동 생성
       },
     },
