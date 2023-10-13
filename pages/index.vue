@@ -43,12 +43,13 @@
     comments : {SearchInput}
     ,
       async asyncData(){
-          const response = await axios.get('http://localhost:3000/products')
+          const response = await axios.get('http://localhost:3000/products') 
+          // backend >> db.json에 있는 데이터들을 들고옴
           // console.log(response)
 
           const products = response.data.map((item) =>{
              return {
-              ...item,
+              ...item, // 개수만큼 풀어서 집어넣음
               imageUrl:  `${item.imageUrl}?random=${Math.random()}`
              }
           })
@@ -70,7 +71,8 @@
         //   this.searchKeyword = keyword
         // }
         async searchProducts(){
-          const response = await fetchProductsByKeyword(this.searchKeyword)
+          const response = await fetchProductsByKeyword(this.searchKeyword) 
+          //  api >> index.js 에 위치
           // console.log(response)
           
           this.products = response.data.map((item) => ({

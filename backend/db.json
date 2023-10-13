@@ -205,6 +205,24 @@
       "name": "Handcrafted Frozen Pizza",
       "price": "315.00",
       "imageUrl": "https://picsum.photos/640/480"
+    },
+    {
+      "id": 6,
+      "name": "Handmade Granite Mouse",
+      "price": "591.00",
+      "imageUrl": "https://picsum.photos/640/480"
+    },
+    {
+      "id": 5,
+      "name": "Small Rubber Salad",
+      "price": "455.00",
+      "imageUrl": "https://picsum.photos/640/480"
+    },
+    {
+      "id": 21,
+      "name": "Handcrafted Soft Pizza",
+      "price": "277.00",
+      "imageUrl": "https://picsum.photos/640/480"
     }
   ]
 }
